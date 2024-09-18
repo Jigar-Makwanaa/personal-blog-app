@@ -4,6 +4,7 @@ import Home from './component/Home';
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
 import Discover from './pages/Discover';
 import MyFeed from './pages/MyFeed';
+import { Edit } from './pages/Edit';
 
 function App() {
   return (
@@ -13,6 +14,7 @@ function App() {
           <Route path='/' element={<Home />} />
           <Route path='/discover' element={<Discover />} />
           <Route path='/myfeed' element={<MyFeed />} />
+          <Route path='/edit/:editId' element={<Edit />} />
         </Routes>
       </BrowserRouter>
     </>

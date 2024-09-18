@@ -71,6 +71,7 @@ header .container .row .main .menu .myfeed:hover {
   border-bottom: 1px solid #808080;
   font-size: 18px;
   color: #808080;
+  font-weight: 900;
 }
 .add-post-section .container .row .main .form .btn {
   padding-top: 15px;

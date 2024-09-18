@@ -53,7 +53,7 @@ const MyFeed = () => {
                                                     <div className="right">
                                                         <div className="action">
                                                             <div className="edit">
-                                                                <Link to={`/discover/${val.id}`}><i class="fa-solid fa-pen-to-square"></i></Link>
+                                                                <Link to={`/edit/${val.id}`}><i class="fa-solid fa-pen-to-square"></i></Link>
                                                             </div>
                                                             <div className="delete">
                                                                 <i onClick={() => deleteRecord(val.id)} class="fa-solid fa-trash"></i>

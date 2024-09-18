@@ -3,44 +3,59 @@ import Header from '../component/Header'
 import '../pages/pages.css'
 import { useNavigate, useParams } from 'react-router-dom'
 
-const Discover = () => {
-
+export const Edit = () => {
     const [img, setImg] = useState('')
     const [title, setTitle] = useState('')
     const [content, setContent] = useState('')
     const [record, setRecord] = useState([])
-    const id = Math.floor(Math.random() * 1000)
     const navigate = useNavigate();
+    const { editId } = useParams()
 
-    // post add start 
-    const handleSubmit = (e) => {
-        e.preventDefault()
-
-        const obj = {
-            id, img, title, content
-        }
-
-        let allData = [...record, obj]
-
-        setRecord(allData)
-
-        localStorage.setItem('user', JSON.stringify(allData))
-
-        setImg("")
-        setTitle("")
-        setContent("")
-
-        navigate('/myfeed')
-
-    }
-    // post add end
-
+    // edit record start 
     useEffect(() => {
         let oldRecord = JSON.parse(localStorage.getItem('user')) ? JSON.parse(localStorage.getItem('user')) : []
 
         setRecord(oldRecord)
 
-    }, [])
+        let editData = oldRecord.find((val) => {
+            return val.id == editId
+        })
+
+        setImg(editData.img)
+        setTitle(editData.title)
+        setContent(editData.content)
+
+
+    }, [editId])
+    // edit record end
+
+    // update data start 
+
+    const handleSubmit = () => {
+
+        let updateEdit = record.map((val)=>{
+            if(val.id == editId) {
+                return{
+                    ...val,
+                    img : img,
+                    title : title,
+                    content : content
+                }   
+            }
+            return val
+        })
+
+        setRecord(updateEdit)
+
+        localStorage.setItem('user', JSON.stringify(updateEdit))
+
+        navigate('/myfeed')
+
+    }
+
+    // update data end
+
+
 
     return (
         <>
@@ -82,5 +97,3 @@ const Discover = () => {
         </>
     )
 }
-
-export default Discover
